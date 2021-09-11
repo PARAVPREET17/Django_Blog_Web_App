@@ -35,10 +35,10 @@
     <h5 class="widget-title">Get Started<span></span></h5>
     <p>Subscribe to our newsletter.</p>
     <div class="col-md-9">
-        <form method="post">
+    <form method="POST">
         {% csrf_token %}
-    <input type="email" class="form-control mb-3" placeholder="Enter Your Email" name="email"></div>
-    <button type="submit" class="btn btn-primary">Subscribe Now</button>
+    <input type="email" class="form-control mb-3" placeholder="Enter Your Email"></div>
+    <a type="submit" href="{% url 'subscribe' %}"class="btn btn-primary">Subscribe Now</a>
 </form>
     </div>
     </div>
