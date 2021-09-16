@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'PostApp',
     'contacts',
-    # 'crispy_forms',
-    # 'crispy_bootstrap5',
+    'users',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -141,12 +142,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-# CRISPY_TEMPLATE_PACK='bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK='bootstrap5'
 
-# LOGIN_REDIRECT_URL ='todolist'
+LOGIN_REDIRECT_URL ='index'
 
-# LOGIN_URL='login'
+LOGIN_URL='login'
 
 
 django_heroku.settings(locals())

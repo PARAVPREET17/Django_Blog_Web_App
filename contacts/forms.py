@@ -4,7 +4,7 @@ from .models import Contact,Subscriber
 class ContactForm(forms.ModelForm):
     class Meta:
         model=Contact
-        fields=['name', 'email', 'PhoneNumber','subject','message']
+        fields=['name', 'email','subject','message']
 
 
 class SubscriptionForm(forms.ModelForm):
