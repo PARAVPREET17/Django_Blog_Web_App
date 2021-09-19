@@ -1,9 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .forms import PostForm
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -18,6 +19,19 @@ class PostListView(ListView):
     queryset = Post.objects.filter(is_published=True)
     context_object_name = "posts"
     ordering = ['-date_posted']
+    paginate_by=5
+
+class UserPostListView(ListView):
+    model = Post
+    template_name = "posts/user_blog.html"
+    context_object_name = "posts"
+    paginate_by=5
+
+    def get_query_set(self):
+        user =get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user,is_published=True).order_by('-date_posted')
+
+
 
 
 class PostDetailView(DetailView):

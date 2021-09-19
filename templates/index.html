@@ -3,6 +3,7 @@
 {% block title %} Welcome to Blogzo App{% endblock %}
 {% block content %}
 <style>
+  
   .neonText {
     animation: flicker 1.5s infinite alternate;
     color: #fff;
@@ -94,6 +95,9 @@
     .card{
       margin-left: 34px;
     }
+    .container{
+      width:83%;
+    }
   } 
 </style>
 {% include 'intials/navbar.html' %}
@@ -139,8 +143,8 @@
         <div class="card" style="width:18rem;">
           <img src="{{post.author.profile.image.url}}" class="card-img-top img mt-4" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted" style="font-size:.87rem">{{post.author}} | {{post.date_posted | date:"F d, Y"}}</h6>
+            <h6 class="card-title">{{post.title}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted" style="font-size:.8rem">{{post.author}} | {{post.date_posted | date:"F d, Y"}}</h6>
             <p class="card-text">
               {{post.content |truncatechars_html:100|safe}}
 
@@ -151,9 +155,10 @@
         </div>
       </div>
       {% endfor %}
-      </>
+    </div>
       <!-- /.row -->
     </div>
+    
 </section>
 {% include 'intials/footer.html' %}
 {% endblock %}
