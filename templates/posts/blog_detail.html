@@ -1,17 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Welcome to Blogzo App{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %} BLOG DETAIL {% endblock %}
 {% block content %}
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">BLOGS</a></li>
-      <li class="breadcrumb-item active">Hello</li>
-    </ol>
-  </nav>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
 
+<!--lobster-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<style>
+  h1{
+    font-family:'Lobster', cursive;
+  }
+  .card-text{
+    font-size: 19px;
+    font-family: 'PT Sans Narrow', sans-serif;
+  }
+</style>
+{% include 'intials/navbar.html' %}
+<!-- ASIDE -->
+<section style="background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );">
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1> {{ post.title }} </h1>
+        <p class=" text-muted" style="font-size:12px">{{ post.author }} | {{ post.date_posted|date:"F d, Y"}}</p><hr>
+        <p class="card-text ">{{ post.content | safe }}</p>
+      </div>
+    </div>
 
-
-  {% include 'intials/footer.html' %}
-
+        <div class="col-md-3 mx-auto mb-3 mt-3 text-center">
+          <div class="blog-sidebar p-2 shadow-sm rounded" style="background-color: aliceblue;">
+            
+            <h2>About</h2>
+            <img src="{{post.author.profile.image.url}}" class="rounded-circle" width="120" height="150" alt="Rob Smith">
+            <h4>{{post.author}}</h4>
+            <h6>{{post.author.profile.title}}</h6>
+            <p style="font-weight:400;font-size:0.8rem">
+            {{post.author.profile.skills}}
+            </p>
+          </div>
+        </div>
+    </div>
+        <!-- /blog-aside -->
+      </div>
+    </div>
+  </section>
+{% include 'intials/footer.html' %}
 {% endblock %}

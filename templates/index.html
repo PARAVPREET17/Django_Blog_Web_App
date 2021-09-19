@@ -85,13 +85,18 @@
     margin:0 auto 15px auto;
     display: block;
   }
+  .card-text{
+    font-size:14px;
+
+  }
 
   @media(max-width: 375px){
     .card{
       margin-left: 34px;
     }
-  }
+  } 
 </style>
+{% include 'intials/navbar.html' %}
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -131,14 +136,17 @@
     <div class="row">
       {% for post in posts %}
       <div class="col-md-3">
-        <div class="card" style="width: 17.5rem;">
-          <img src="{% static 'img/Paravpreet.png' %}" class="card-img-top img mt-4" alt="...">
+        <div class="card" style="width:18rem;">
+          <img src="{{post.author.profile.image.url}}" class="card-img-top img mt-4" alt="...">
           <div class="card-body">
-            <h4 class="card-title">{{post.title}}</h4>
-            <h6 class="card-subtitle mb-2 text-muted">{{post.author}} | {{post.date_posted | date:"F d, Y"}}</h6>
-            <p class="card-text">{{post.content | slice:100}}</p>
+            <h5 class="card-title">{{post.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted" style="font-size:.87rem">{{post.author}} | {{post.date_posted | date:"F d, Y"}}</h6>
+            <p class="card-text">
+              {{post.content |truncatechars_html:100|safe}}
 
-            <a href="#" class="btn read "></i>Read More</a>
+            </p>
+
+            <a href="{% url 'blog-detail' post.id %}" class="btn read "></i>Read More</a>
           </div>
         </div>
       </div>
