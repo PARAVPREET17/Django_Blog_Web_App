@@ -11,6 +11,6 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     list_editable=('is_published',)
     # summernote_fields = ('content',)
-    prepopulated_fields={'category_slug':('category',)}
+    
 # Register your models here.
 admin.site.register(Post,PostAdmin)

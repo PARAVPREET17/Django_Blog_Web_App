@@ -12,6 +12,6 @@ class PostForm(forms.ModelForm):
       model=Post
       fields=('title','category','content')
       # widgets={
-      #   'content': SummernoteWidget()
+      #   'content':forms.ChoiceField()
       # }
       

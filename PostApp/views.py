@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
+from category.models import Category
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .forms import PostForm
@@ -13,13 +14,22 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-class PostListView(ListView):
-    model = Post
-    template_name = "posts/blog.html"
-    queryset = Post.objects.filter(is_published=True)
-    context_object_name = "posts"
-    ordering = ['-date_posted']
-    paginate_by=3
+def PostListView(request,category_slug=None):
+    categories=None
+    posts=None
+    if category_slug != None:
+        categories=get_object_or_404(Category,category_slug=category_slug)
+        posts=Post.objects.filter(category=categories,is_published=True)
+        posts_count=posts.count()
+    else:
+        posts=Post.objects.filter(is_published=True)
+        posts_count=posts.count()
+    context={
+        'posts':posts,
+        'posts_count':posts_count,}    
+    return render(request,'posts/blog.html',context)
+
+   
 
 class UserPostListView(ListView):
     model = Post
