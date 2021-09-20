@@ -8,9 +8,10 @@ class PostForm(forms.ModelForm):
     # content = forms.CharField(widget=SummernoteWidget())
     # content = SummernoteTextField()
     # content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 30}))
+    is_published = forms.BooleanField(label="Publish")
     class Meta:
       model=Post
-      fields=('title','category','content')
+      fields=('title','category','content','is_published')
       # widgets={
       #   'content':forms.ChoiceField()
       # }
