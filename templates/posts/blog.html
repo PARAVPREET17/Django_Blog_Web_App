@@ -18,6 +18,9 @@
       font-size: 14px;
       font-family:'PT+Sans+Narrow', sans-serif;
   }
+  .pagi{
+  margin-left: 380px;
+  }
 </style>
 {% include 'intials/navbar.html' %}
   <!-- MAIN -->
@@ -50,19 +53,6 @@
           {% endfor %}
         </div>
         <!-- /col-md-9 -->
-
-        <!-- ASIDE -->
-        <!-- <div class="col-md-3 mx-auto mb-3 text-center">
-          <div class="blog-sidebar p-2 shadow-sm rounded">
-            
-            <h2>About</h2>
-            <img src="https://res.cloudinary.com/dfog0e294/image/upload/v1547038232/webdev/Blog/user.png" class="img-fluid rounded-circle" width="150" alt="Rob Smith">
-            <h4>Rob Smith</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a imperdiet diam. In id nibh varius, interdum mauris eu, sollicitudin nunc. Ut pretium tellus metus, at efficitur elit venenatis sed.
-            </p>
-          </div>
-        </div> -->
         <!-- /blog-aside -->
         <div class="col-md-4 mb-3">
           <div class="content-section">
@@ -79,43 +69,36 @@
           </div>
         </div>
       </div>
-
-      </div>
       <!-- /row -->
     </div>
     <!-- /container -->
   </main>
-  <nav aria-label="Page navigation example">
-    {% if all_tasks.has_other_pages %}
-    <ul class="pagination justify-content-end">
-      {% if all_tasks.has_previous %}
-      <li class="page-item"><a href="?pg={{all_tasks.previous_page_number}}" class="page-link">&laquo;</a></li>
-      {% else %}
-      <li class="page-item-disabled"><a class="page-link">&laquo;</a>
+  <div class="pagi">
+  {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-dark btn-outline-light mb-4" href="?page=1">First</a>
+        <a class="btn btn-dark btn-outline-light mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
       {% endif %}
-      {% for i in all_tasks.paginator.page_range %}
-                          {% if listings.number == i %}
-                          <li class="page-item active">
-                              <a class="page-link">{{i}}</a>
-                          </li>
-                          {% else %}
-                          <li class="page-item">
-                              <a href="?pg={{i}}" class="page-link">{{i}}</a>
-                          </li>
-                          {% endif %}
-                      {% endfor %} 
-      {% if all_tasks.has_next %}
-      <li class="page-item"><a href="?pg={{all_tasks.next_page_number}}" class="page-link">&raquo;</a></li>
-      {% else %}
-      <li class="page-item-disabled"><a class="page-link">&raquo;</a></li>
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-dark btn-outline-light mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-dark btn-outline-light mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-dark btn-outline-light mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-dark btn-outline-light mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
-    </ul>
+
     {% endif %}
-  </nav>
+  </div>
 </div>
-
+</div>
 </section>
-
 
   {% include 'intials/footer.html' %}
 {% endblock %}

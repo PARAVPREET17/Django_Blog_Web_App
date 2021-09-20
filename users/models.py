@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 
+DEFAULT = 'profile_pics/default.jpg'
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    image=models.ImageField(default='default.jpg',upload_to='profile_pics')
+    image=models.ImageField(upload_to='profile_pics',default=DEFAULT)
     skills=models.CharField(max_length=100)
     title=models.CharField(max_length=100)
 
@@ -13,8 +14,8 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
-    def save(self):
-        super().save() #parent's class save method
+    def save(self,*args, **kwargs):
+        super(Profile, self).save(*args, **kwargs) #parent's class save method
 
         img=Image.open(self.image.path)   
         if img.height>300 or img.width>300:
