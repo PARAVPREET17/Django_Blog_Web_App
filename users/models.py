@@ -9,6 +9,9 @@ class Profile(models.Model):
     image=models.ImageField(upload_to='profile_pics',default=DEFAULT)
     skills=models.CharField(max_length=100)
     title=models.CharField(max_length=100)
+    twitter=models.CharField(max_length=100,blank=True)
+    facebook=models.CharField(max_length=100,blank=True)
+    instagram=models.CharField(max_length=100,blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

@@ -7,6 +7,30 @@
 {% load crispy_forms_tags %}
 {% block title %} Login {% endblock %}
 {% block content %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<style>
+  .fa-facebook,
+.fa-twitter,
+.fa-instagram {
+    position: relative;
+    /*top: 75px;*/
+    left: -20.5%;
+    color: #ee8828;
+    margin-left: 15px
+}
+
+.fa-facebook:hover {
+    color: #3B579D
+}
+
+.fa-twitter:hover {
+    color: #2CAAE1
+}
+
+.fa-instagram:hover {
+    color: #C22660
+}
+</style>
 {% include 'intials/navbar.html' %}
 
 
@@ -60,9 +84,11 @@
                   <i class="ni business_briefcase-24 mr-2"></i>Skills</div>{{user.profile.skills}}
                 
                 <div class="profile-details mt-2">
-                  <i class="ni education_hat mr-2"></i>Contact</div>
-                   {{user.email}}
-               
+                  <i class="ni education_hat mr-2"></i> Contact 
+                  </div>
+                   {{user.email}}<div class=" mt-2 " style="padding-left:13.352685050798259vh">
+                   <a href="#"><i class="fab fa-facebook fa-lg"></i></a> <a href="https://twitter.com/{{user.profile.twitter}}"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="https://www.instagram.com/{{user.profile.instagram}}/"><i class="fab fa-instagram fa-lg"></i></a></div>
               </div>
             </div>
           </div>

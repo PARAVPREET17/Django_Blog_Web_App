@@ -6,6 +6,8 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .forms import PostForm
 from django.contrib.auth.models import User
+from .forms import CommentForm
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -24,6 +26,10 @@ def PostListView(request,category_slug=None):
     else:
         posts=Post.objects.filter(is_published=True)
         posts_count=posts.count()
+        paginator=Paginator(posts,3)
+        page=request.GET.get('page')
+        posts=paginator.get_page(page)
+        
     context={
         'posts':posts,
         'posts_count':posts_count,}    
@@ -47,6 +53,7 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "posts/blog_detail.html"
+    form = CommentForm()
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

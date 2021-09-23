@@ -2,7 +2,32 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %} BLOG DETAIL {% endblock %}
+<style>
+.fa-facebook,
+.fa-twitter,
+.fa-instagram {
+    position: relative;
+    top: 75px;
+    left: -20.5%;
+    color: #F1F3F5;
+    margin-left: 15px
+}
+
+.fa-facebook:hover {
+    color: #3B579D
+}
+
+.fa-twitter:hover {
+    color: #2CAAE1
+}
+
+.fa-instagram:hover {
+    color: #C22660
+}
+
+</style>
 {% block content %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
@@ -12,43 +37,72 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <style>
-  h1{
-    font-family:'Lobster', cursive;
+  h1 {
+    font-family: 'Lobster', cursive;
   }
-  .card-text{
+
+  .card-text {
     font-size: 19px;
     font-family: 'PT Sans Narrow', sans-serif;
   }
 </style>
 {% include 'intials/navbar.html' %}
 <!-- ASIDE -->
-<section style="background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );">
-<div class="container">
-  <div class="row">
-    <div class="col-md-9 card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1> {{ post.title }} </h1>
-        <p class=" text-muted" style="font-size:12px">{{ post.author }} | {{ post.date_posted|date:"F d, Y"}}</p><hr>
-        <p class="card-text ">{{ post.content | safe }}</p>
-      </div>
-    </div>
+<section
+  style="background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 card mb-4  mt-3 left  top" style="background-color: aliceblue;">
+        <div class="card-body">
+          <div class="row ">
+          <div class="col-md-10">
+            <h1> {{ post.title }} </h1>
+          </div>
+          <div class="col-md-2">
+            {% if post.author == request.user %}
 
-        <div class="col-md-3 mx-auto mb-3 mt-3 text-center">
-          <div class="blog-sidebar p-2 shadow-sm rounded" style="background-color: aliceblue;">
-            
-            <h2>About</h2>
-            <img src="{{post.author.profile.image.url}}" class="rounded-circle" width="120" height="150" alt="Rob Smith">
-            <h4>{{post.author}}</h4>
-            <h6>{{post.author.profile.title}}</h6>
-            <p style="font-weight:400;font-size:0.8rem">
-            {{post.author.profile.skills}}
-            </p>
+            <a class="btn btn-primary" href="{% url 'blog-update' post.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'blog-delete' post.id %}">Delete</a>
+
+            {% endif %}
           </div>
         </div>
-    </div>
-        <!-- /blog-aside -->
+       
+          <p class=" text-muted" style="font-size:12px">{{ post.author }} | {{post.date_posted | date:"F d, Y"}}</p>
+
+
+          <hr>
+         <p> <img class="card-img-top" src="{{post.image.url}}"  alt="{{ post.title }}" style="height: 397px;"></p>
+
+          <p class="card-text" ></p>{{ post.content}}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 mx-auto mb-3 mt-3 text-center">
+        <div class="blog-sidebar p-2 shadow-sm rounded" style="background-color: aliceblue;">
+
+          <h2>About</h2>
+          <img src="{{post.author.profile.image.url}}" class="rounded-circle" width="120" height="150" alt="Rob Smith">
+          <h4>{{post.author}}</h4>
+          <h6>{{post.author.profile.title}}</h6>
+          <p style="font-weight:400;font-size:0.8rem">
+            {{post.author.profile.skills}}
+          </p>
+          <p><a href="#"><i class="fab fa-facebook fa-lg"></i></a> <a href="https://twitter.com/{{post.author.profile.twitter}}"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="https://www.instagram.com/{{post.author.profile.instagram}}/"><i class="fab fa-instagram fa-lg"></i></a>
+          </p>
+        </div>
+     
+
       </div>
     </div>
-  </section>
+   
+  
+  </div>
+  
+  </div>
+  </div>
+  </div>
+</section>
 {% include 'intials/footer.html' %}
 {% endblock %}

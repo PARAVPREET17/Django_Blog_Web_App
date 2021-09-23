@@ -24,4 +24,5 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model=Profile
-        fields=['title','skills','image']        
+        fields=['title','skills','image','twitter','instagram'] 
+        labels={'twitter':'Twitter Username','instagram':'Instagram Username'}       
