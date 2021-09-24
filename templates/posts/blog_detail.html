@@ -37,7 +37,7 @@
 }
 
   .card{
-    border-radius:40px;
+    border-radius:25px;
     margin-bottom: 40px;
   }
   .card-no-border .card {
@@ -317,7 +317,7 @@
               <img class="card-img-left" src="{{user.profile.image.url}}" style="height:63px;border-radius: 50%;"> 
               <div style="margin-left:16px"> 
                 <h4>{{user.username}}</h4>  
-               <h6 class=" text-muted" style="font-size:12px;margin: 0;
+               <h6 class=" text-muted" style="font-size:14px;margin: 0;
               ">{{user.profile.title}}</h6> 
              
             </div> 
@@ -349,7 +349,7 @@
                     <h3 class="card-title">Recent Comments</h3>
                     <h6 class="card-subtitle">Latest Comments section by users</h6>
                 </div>
-                
+                {% if comments %}
                 {% for comment in comments %}
                 <div class="comment-widgets m-b-20">
                     <div class="d-flex flex-row comment-row">
@@ -362,7 +362,10 @@
                     </div>
                     
       {% endfor %}
-
+      {% else %}
+      <h5 style="padding-left: 20px;color:rgb(230, 22, 22)">
+      No comments Yet. You will be first one Comment.</h5>
+{% endif %}
 
     </div>
 </section>

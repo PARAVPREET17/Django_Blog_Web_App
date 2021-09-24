@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect,HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # mixins
 from .models import Post, Comment, Like  # PostApp models
 from category.models import Category  # category model
@@ -11,6 +11,7 @@ from django.core.paginator import Paginator  # pagination
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import json
+
 
 
 def index(request):
@@ -63,6 +64,7 @@ def post_detail(request, pk):
             data.post = post
             data.user = user
             data.save()
+            return HttpResponseRedirect('')
             
     else:
         form = CommentForm()
