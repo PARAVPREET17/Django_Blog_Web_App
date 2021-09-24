@@ -37,7 +37,7 @@
     <div class="col-md-9">
     <form method="POST">
         {% csrf_token %}
-    <input type="email" class="form-control mb-3" placeholder="Enter Your Email"></div>
+    <input type="email" class="form-control mb-3" name='email' placeholder="Enter Your Email"></div>
     <a type="submit" href="{% url 'subscribe' %}"class="btn btn-primary">Subscribe Now</a>
 </form>
     </div>

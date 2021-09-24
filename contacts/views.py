@@ -38,4 +38,3 @@ def subscribe(request):
             messages.success(
                 request, "You have successfully subscribed to our newsletter!")
             return redirect('index')
-    return render(request, 'index.html')

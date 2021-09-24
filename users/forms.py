@@ -2,12 +2,13 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
+from captcha.fields import CaptchaField
 
 
 class CustomRegisterForm(UserCreationForm):
     email = forms.EmailField(label='Email')
     phone = forms.CharField(max_length=100,label='Phone No.')
-
+    captcha = CaptchaField()
     class Meta:
         model = User
         fields = ['username','email','phone','password1', 'password2']

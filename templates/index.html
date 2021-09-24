@@ -140,7 +140,7 @@
     <div class="row">
       {% for post in posts %}
       <div class="col-md-3">
-        <div class="card" style="width:18rem;">
+        <div class="card" style="width:18rem;height:25.159rem">
           <img src="{{post.author.profile.image.url}}" class="card-img-top img mt-4" alt="...">
           <div class="card-body">
             <h6 class="card-title">{{post.title}}</h6>
@@ -150,7 +150,10 @@
 
             </p>
 
-            <a href="{% url 'blog-detail' post.id %}" class="btn read "></i>Read More</a>
+            <a href="{% url 'blog-detail' post.id %}" class="btn read" style="
+            position: absolute;
+            bottom: 16.5px;
+        "></i>Read More</a>
           </div>
         </div>
       </div>

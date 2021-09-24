@@ -10,7 +10,7 @@
     background-size: cover;
   }  
   .main{
-    height:65vh;
+    height:81vh;
     /* width:10vh; */
   }
 .nav-text{  
@@ -43,6 +43,7 @@
 .blog-main{
   height:100% !important;
   width:100% !important;
+  /* position: absolute; */
 }
 .ribbon {
   width: 150px;
@@ -94,8 +95,8 @@
   top: 30px;
   transform: rotate(45deg);
 }
-.navbar {
+/* .navbar {
   box-shadow: 1px 10px 22px -5px rgba(124,144,238,0.75);
   -webkit-box-shadow: 1px 10px 22px -5px rgba(124,144,238,0.75);
   -moz-box-shadow: 1px 10px 22px -5px rgba(124,144,238,0.75);
-}
+} */

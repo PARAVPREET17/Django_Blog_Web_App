@@ -9,6 +9,7 @@ def register(request):
     if request.method == 'POST':
         form = CustomRegisterForm(request.POST or None)
         if form.is_valid():
+            human = True
             form.save()
            #  username=form.cleaned_data.get('username')
             messages.success(

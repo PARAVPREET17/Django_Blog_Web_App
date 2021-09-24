@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+# from captcha.fields import CaptchaField
 
 DEFAULT = 'profile_pics/default.jpg'
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
+    # captcha = CaptchaField()
     image=models.ImageField(upload_to='profile_pics',default=DEFAULT)
     skills=models.CharField(max_length=100)
     title=models.CharField(max_length=100)
@@ -15,6 +17,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    # def get_photo_url(self):
+    #   if self.image and hasattr(self.image, 'url'):
+    #         return self.image.url
+    #   else:
+    #     return "static/img/default.jpg"      
 
 
     def save(self,*args, **kwargs):
