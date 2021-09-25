@@ -64,7 +64,7 @@ def post_detail(request, pk):
             data.post = post
             data.user = user
             data.save()
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect('/')
             
     else:
         form = CommentForm()
